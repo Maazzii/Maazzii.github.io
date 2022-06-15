@@ -1,21 +1,134 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  </head>
-  <body>
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Maazzii's github page</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+  body {
+    margin: 0px;
+    height: 100vh;
+    overflow: hidden;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  header {
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 60px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .header-button {
+    margin-right: 10px;
+
+  }
+
+  #view-wrap {
+    position: relative;
+  }
+
+  .view-backdrop {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    padding-top: 60px;
+  }
+
+  #body1 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: lightcoral;
+  }
+
+  #body2 {
+    position: absolute;
+    top: 0px;
+    left: 100vw;
+    background-color: lightgreen;
+  }
+
+  #body3 {
+    position: absolute;
+    top: 100vh;
+    left: 100vw;
+    background-color: lightgoldenrodyellow;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+
+  var viewWrap;
+  var showingSubmenu = false;
+
+  $(function() {
+    viewWrap = $("#view-wrap");
+  })
+
+  function showBody1() {
+    if (showingSubmenu) {
+      $(viewWrap).animate({
+        top: "0px"
+      }, 500)
+    }
+    $(viewWrap).animate({
+      left: "0px"
+    }, 500)
+
+    showingSubmenu = false;
+  }
+
+  function showBody2() {
+    if (showingSubmenu) {
+      $(viewWrap).animate({
+        top: "0px"
+      }, 500)
+    }
+    $(viewWrap).animate({
+      left: "-100vw"
+    }, 500)
+    
+    showingSubmenu = false;
+  }
+
+  function showBody3() {
+    if ($(viewWrap).css("left") != ("-" + $("body").css("width"))) {
+      $(viewWrap).animate({
+        top: "0px",
+        left: "-100vw"
+      }, 500)
+    }
+    $(viewWrap).animate({
+      top: "-100vh",
+      left: "-100vw"
+    }, 500)
+
+    showingSubmenu = true;
+  }
+</script>
+</head>
+<body>
+  <header>
+    <button type="button" class="header-button button is-primary" onclick="showBody1()">1</button>
+    <button type="button" class="header-button button is-primary" onclick="showBody2()">2</button>
+    <button type="button" class="header-button button is-primary" onclick="showBody3()">3</button>
+  </header>
+
+  <div id="view-wrap">
+    <div id="body1" class="view-backdrop">
+      <a href="mailto:tlwlro@outlook.com">메일</a>
     </div>
-  </section>
-  </body>
+    <div id="body2" class="view-backdrop"></div>
+    <div id="body3" class="view-backdrop"></div>
+  </div>
+</body>
 </html>
