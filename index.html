@@ -39,6 +39,9 @@
     ></script>
 
     <script>
+      var page = 1;
+      var lastpage = $(".content").length;
+
       window.addEventListener(
         "wheel",
         function (e) {
@@ -47,8 +50,32 @@
         { passive: false }
       );
 
-      var page = 1;
-      var lastpage = $(".content").length;
+      var startY, endY;
+      
+      window.addEventListener(
+        "touchstart",
+        function (e) {
+          startY = event.touches[0].pageY;
+        }
+      );
+
+      window.addEventListener(
+        "touchend",
+        function (e) {
+          endY = event.touches[0].pageY;
+          if (startY > endY) {
+            if (page != 1) {
+              page--;
+            }
+          } else if (startY < endY) {
+            if (page != lastpage) {
+              page++;
+            }
+          }
+
+          scrollToPage();
+        }
+      )
 
       $("html").animate(
         {
@@ -73,12 +100,17 @@
           }
           page--;
         }
+
+        scrollToPage();
+      });
+
+      function scrollToPage() {
         var posTop = (page - 1) * $(window).height();
 
         $("html").animate({
           scrollTop: posTop
         });
-      });
+      }
     </script>
   </head>
   <body>
