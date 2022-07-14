@@ -52,14 +52,14 @@
 
       var startY, endY;
       
-      window.addEventListener(
+      body.addEventListener(
         "touchstart",
         function (e) {
           startY = e.touches[0].pageY;
         }
       );
 
-      window.addEventListener(
+      body.addEventListener(
         "touchend",
         function (e) {
           endY = e.touches[0].pageY;
