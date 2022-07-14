@@ -110,11 +110,20 @@
         $("html").animate({
           scrollTop: posTop
         });
+
+        var log = $("<div>");
+        var html = "";
+        html += "page:" + page + ", posTop: " + posTop;
+        $(log).html(html);
+
+        $("#log").append(log);
       }
     </script>
   </head>
   <body>
-    <div id="page1" class="content"></div>
+    <div id="page1" class="content">
+      <div id="log"></div>
+    </div>
     <div id="page2" class="content"></div>
     <div id="page3" class="content"></div>
   </body>
