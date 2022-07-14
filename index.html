@@ -55,14 +55,14 @@
       window.addEventListener(
         "touchstart",
         function (e) {
-          startY = event.touches[0].pageY;
+          startY = e.touches[0].pageY;
         }
       );
 
       window.addEventListener(
         "touchend",
         function (e) {
-          endY = event.touches[0].pageY;
+          endY = e.touches[0].pageY;
           if (startY > endY) {
             if (page != 1) {
               page--;
